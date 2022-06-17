@@ -5,11 +5,12 @@ from bokeh.io import output_file
 from bokeh.models import ColumnDataSource, CDSView, GroupFilter
 from bokeh.layouts import column
 from bokeh.models.widgets import Tabs, Panel
+from os.path import dirname, join
 
 # Read the csv files
-player_stats = pd.read_csv('dataset/2017-18_playerBoxScore.csv', parse_dates=['gmDate'])
-team_stats = pd.read_csv('dataset/2017-18_teamBoxScore.csv', parse_dates=['gmDate'])
-standings = pd.read_csv('dataset/2017-18_standings.csv', parse_dates=['stDate'])
+player_stats = pd.read_csv(join(dirname(__file__),'dataset','2017-18_playerBoxScore.csv'), parse_dates=['gmDate'])
+team_stats = pd.read_csv(join(dirname(__file__),'dataset','2017-18_teamBoxScore.csv'), parse_dates=['gmDate'])
+standings = pd.read_csv(join(dirname(__file__),'dataset','2017-18_standings.csv'), parse_dates=['stDate'])
 
 west_top_2 = (standings[(standings['teamAbbr'] == 'HOU') | (standings['teamAbbr'] == 'GS')]
             .loc[:, ['stDate', 'teamAbbr', 'gameWon']]            
