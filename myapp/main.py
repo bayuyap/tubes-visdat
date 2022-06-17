@@ -12,9 +12,7 @@ player_stats = pd.read_csv(join(dirname(__file__), 'data','2017-18_playerBoxScor
 team_stats = pd.read_csv(join(dirname(__file__), 'data','2017-18_teamBoxScore.csv'), parse_dates=['gmDate'])
 standings = pd.read_csv(join(dirname(__file__), 'data','2017-18_standings.csv'), parse_dates=['stDate'])
 
-west_top_2 = (standings[(standings['teamAbbr'] == 'HOU') | (standings['teamAbbr'] == 'GS')]
-            .loc[:, ['stDate', 'teamAbbr', 'gameWon']]            
-            .sort_values(['teamAbbr','stDate']))
+
             
 # Output to file
 output_file('east-west-top-2-standings-race.html', 
@@ -24,8 +22,8 @@ output_file('east-west-top-2-standings-race.html',
 # Create a ColumnDataSource
 standings_cds = ColumnDataSource(standings)
 
-# Create a ColumnDataSource
-west_cds = ColumnDataSource(west_top_2)
+
+
 # Create the views for each team
 celtics_view = CDSView(source=standings_cds,
                       filters=[GroupFilter(column_name='teamAbbr', 
